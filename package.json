@@ -4,8 +4,11 @@
   "description": "Exploration Servers promo site",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
+    "dev": "node dev.js",
     "build": "node build.js",
     "deploy": "npx netlify-cli deploy --prod --dir=."
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.4"
   }
 }
