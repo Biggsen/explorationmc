@@ -1,0 +1,11 @@
+{
+  "name": "exploration-servers",
+  "private": true,
+  "description": "Exploration Servers promo site",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node build.js",
+    "deploy": "npx netlify-cli deploy --prod --dir=."
+  }
+}
