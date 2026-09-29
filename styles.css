@@ -144,6 +144,11 @@ p {
   fill: currentColor;
 }
 
+.discord svg {
+  width: 1.25rem;
+  height: auto;
+}
+
 .nav-burger {
   display: none;
 }
@@ -190,7 +195,7 @@ p {
   max-width: 28rem;
   margin-top: 1rem;
   color: var(--text);
-  font-size: 1.05rem;
+  font-size: 18px;
 }
 
 .hero-actions {
@@ -209,10 +214,12 @@ p {
   padding: 0.55rem 1.1rem;
   border-radius: 0.35rem;
   border: 1px solid transparent;
+  font-family: inherit;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .button.primary {
@@ -240,8 +247,7 @@ p {
 .about,
 .servers,
 .features,
-.gallery,
-.news {
+.gallery {
   width: min(var(--page), calc(100% - 12vw));
   margin: 0 auto;
   padding: 4.5rem 0;
@@ -263,9 +269,15 @@ p {
 }
 
 .about p {
-  max-width: 42rem;
+  max-width: 62rem;
   margin: 1rem auto 0;
   color: var(--muted);
+  font-size: 18px;
+}
+
+.about-closer {
+  color: var(--text);
+  font-weight: 600;
 }
 
 .section-head {
@@ -290,44 +302,63 @@ p {
   white-space: nowrap;
 }
 
-.server-grid,
-.news-grid {
+.server-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.2rem;
 }
 
-.server-card,
-.news article {
+.server-card {
   background: var(--bg-raise);
   border: 1px solid var(--line);
   border-radius: 0.7rem;
   overflow: hidden;
 }
 
-.server-card img,
-.news img {
+.server-shot {
+  position: relative;
+}
+
+.server-shot > img:first-child {
   width: 100%;
   height: 13.5rem;
   object-fit: cover;
   object-position: center 30%;
 }
 
-.server-body,
-.news article div {
+.server-badge {
+  position: absolute;
+  top: 0.65rem;
+  left: 0.65rem;
+  width: 56px;
+  height: auto;
+  border-radius: 0.3rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.server-body {
   padding: 1.15rem 1.2rem 1.25rem;
 }
 
-.server-body h3,
-.news h3 {
+.server-body h3 {
   margin: 0;
   font-size: 1.8rem;
 }
 
-.server-body > p,
-.news p {
+.version {
+  margin-left: auto;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.server-body > p {
   margin-top: 0.45rem;
   color: var(--muted);
+  font-size: 18px;
 }
 
 .labels {
@@ -342,28 +373,51 @@ p {
 }
 
 .labels li {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.labels li::before {
-  content: "";
-  width: 0.45rem;
-  height: 0.45rem;
-  border: 1.5px solid var(--gold);
-  transform: rotate(45deg);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .server-meta {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 0.8rem;
   margin-top: 1.15rem;
 }
 
+.server-meta .button {
+  white-space: nowrap;
+}
+
+.server-actions {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.server-actions .button {
+  flex: 1 1 0;
+}
+
+.server-actions .button.ghost {
+  background: transparent;
+}
+
+.server-actions .button.ghost:hover {
+  background: #080c0a;
+}
+
+.server-actions .button img {
+  width: 1.05rem;
+  height: auto;
+}
+
 .address {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  width: 100%;
   margin: 0;
   color: var(--text);
   font-size: 0.92rem;
@@ -372,8 +426,8 @@ p {
 
 .features ul {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.6rem;
   margin: 1.8rem 0 0;
   padding: 0;
   list-style: none;
@@ -383,14 +437,15 @@ p {
   padding: 0.2rem 0.35rem;
 }
 
-.features svg {
-  width: 1.7rem;
-  height: 1.7rem;
-  fill: none;
-  stroke: var(--gold);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.features img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.features .feature-skull {
+  object-view-box: inset(39% 28% 12% 28%);
 }
 
 .features h3 {
@@ -403,7 +458,7 @@ p {
 
 .features p {
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 18px;
 }
 
 .gallery-row {
@@ -412,29 +467,127 @@ p {
   gap: 0.7rem;
 }
 
+.gallery-row button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0.45rem;
+  background: none;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+
+.gallery-row button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
 .gallery-row img {
   width: 100%;
   height: 9.5rem;
   object-fit: cover;
   object-position: center 22%;
-  border-radius: 0.45rem;
 }
 
-.news-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.lightbox {
+  width: min(92vw, 1100px);
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
 }
 
-.news time {
-  display: block;
-  margin-top: 0.15rem;
-  color: var(--gold);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+.lightbox::backdrop {
+  background: #080c0a;
 }
 
-.news h3 {
-  margin-top: 0.35rem;
-  font-size: 1.25rem;
+.lightbox figure {
+  margin: 0;
+}
+
+.lightbox img {
+  width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 0.35rem;
+  background: #000;
+}
+
+.lightbox figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  text-shadow: 0 1px 10px #000;
+}
+
+.lightbox-count {
+  flex: none;
+  margin-left: auto;
+}
+
+.lightbox-prev,
+.lightbox-next,
+.lightbox-close {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: rgba(14, 20, 18, 0.72);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  width: 3.2rem;
+  height: 5rem;
+  transform: translateY(-50%);
+}
+
+.lightbox-prev {
+  left: 1rem;
+}
+
+.lightbox-next {
+  right: 1rem;
+}
+
+.lightbox-close {
+  top: 1rem;
+  right: 1rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+}
+
+.lightbox-prev svg,
+.lightbox-next svg,
+.lightbox-close svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover,
+.lightbox-close:hover,
+.lightbox-prev:focus-visible,
+.lightbox-next:focus-visible,
+.lightbox-close:focus-visible {
+  background: rgba(215, 180, 131, 0.22);
+  outline: none;
 }
 
 .footer {
@@ -487,7 +640,7 @@ p {
 
 @media (max-width: 980px) {
   .features ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.2rem;
   }
 
@@ -498,9 +651,12 @@ p {
     padding-bottom: 0.4rem;
   }
 
-  .gallery-row img {
+  .gallery-row button {
     flex: 0 0 16rem;
     scroll-snap-align: start;
+  }
+
+  .gallery-row img {
     height: 11rem;
   }
 }
@@ -542,7 +698,6 @@ p {
   }
 
   .server-grid,
-  .news-grid,
   .features ul,
   .footer {
     grid-template-columns: 1fr;
