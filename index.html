@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0QRMJLB0FN"></script>
+    <!-- Google tag (gtag.js) — production domain only -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+      if (location.hostname === "explorationmc.com") {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () {
+          dataLayer.push(arguments);
+        };
+        gtag("js", new Date());
+        gtag("config", "G-0QRMJLB0FN");
+
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-0QRMJLB0FN";
+        document.head.appendChild(script);
       }
-      gtag("js", new Date());
-      gtag("config", "G-0QRMJLB0FN");
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -390,12 +396,14 @@
               outbound = false;
             }
           }
-          gtag("event", "ui_click", {
-            element_type: el.tagName === "A" ? "link" : "button",
-            link_text: label,
-            link_url: href,
-            outbound,
-          });
+          if (typeof gtag === "function") {
+            gtag("event", "ui_click", {
+              element_type: el.tagName === "A" ? "link" : "button",
+              link_text: label,
+              link_url: href,
+              outbound,
+            });
+          }
         },
         true
       );
