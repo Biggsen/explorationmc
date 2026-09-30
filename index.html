@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Josefin+Sans:wght@400&family=Outfit:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -20,11 +20,12 @@
     <a class="skip" href="#servers">Skip to servers</a>
     <header class="nav">
       <a class="brand" href="#top">
-        <svg class="compass" viewBox="0 0 32 32" aria-hidden="true">
-          <circle cx="16" cy="16" r="11" />
-          <path d="M16 5.5v3.2M16 23.3v3.2M5.5 16h3.2M23.3 16h3.2" />
-          <path d="M16 8.5 19.2 16 16 23.5 12.8 16Z" />
-        </svg>
+        <img class="brand-mark" alt="" />
+        <script>
+          const mark = String(Math.floor(Math.random() * 10) + 1).padStart(2, "0");
+          window.markSrc = `images/explorationmc${mark}.png`;
+          document.currentScript.previousElementSibling.src = window.markSrc;
+        </script>
         <span>Exploration MC</span>
       </a>
       <button class="nav-burger" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -34,7 +35,7 @@
         <a href="#about">About</a>
         <a href="#servers">Servers</a>
         <a href="#gallery">Gallery</a>
-        <a class="discord" href="#">
+        <a class="discord" href="https://discord.gg/5vtbwvBJAz">
           <svg viewBox="0 0 59 44" aria-hidden="true">
             <path
               fill="currentColor"
@@ -60,7 +61,7 @@
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#servers">View Servers</a>
-            <a class="button ghost discord" href="#">
+            <a class="button ghost discord" href="https://discord.gg/5vtbwvBJAz">
               <svg viewBox="0 0 59 44" aria-hidden="true">
                 <path
                   fill="currentColor"
@@ -311,11 +312,10 @@
 
     <footer class="footer">
       <a class="brand" href="#top">
-        <svg class="compass" viewBox="0 0 32 32" aria-hidden="true">
-          <circle cx="16" cy="16" r="11" />
-          <path d="M16 5.5v3.2M16 23.3v3.2M5.5 16h3.2M23.3 16h3.2" />
-          <path d="M16 8.5 19.2 16 16 23.5 12.8 16Z" />
-        </svg>
+        <img class="brand-mark" alt="" />
+        <script>
+          document.currentScript.previousElementSibling.src = window.markSrc;
+        </script>
         <span>
           Exploration MC
           <small>Where the journey matters</small>
@@ -327,7 +327,7 @@
         <a href="#gallery">Gallery</a>
       </nav>
       <div class="footer-social">
-        <a class="discord" href="#" aria-label="Discord">
+        <a class="discord" href="https://discord.gg/5vtbwvBJAz" aria-label="Discord">
           <svg viewBox="0 0 59 44" aria-hidden="true">
             <path
               fill="currentColor"
